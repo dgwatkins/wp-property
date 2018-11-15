@@ -1298,9 +1298,10 @@ if (!function_exists('wpp_render_search_input')):
                   class="wpp_search_select_field wpp_search_select_field_<?php echo $attrib; ?> <?php echo $attribute_data['ui_class']; ?>"
                   name="wpp_search[<?php echo $attrib; ?>]">
             <option value="-1"><?php _e('Any', ud_get_wp_property()->domain) ?></option>
-            <?php foreach ($search_values[$attrib] as $v) : ?>
+            <?php foreach ($search_values[$attrib] as $i => $v) : ?>
+              <?php $ov = explode(',', $attribute_data['predefined_values'])[$i]; ?>
               <option
-                value="<?php echo esc_attr($v); ?>" <?php selected($value, $v); ?>><?php echo esc_attr(apply_filters("wpp_stat_filter_{$attrib}", $v)); ?></option>
+                value="<?php echo esc_attr($ov); ?>" <?php selected($value, $ov); ?>><?php echo esc_attr(apply_filters("wpp_stat_filter_{$attrib}", $v)); ?></option>
             <?php endforeach; ?>
           </select>
           <?php
